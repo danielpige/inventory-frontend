@@ -1,0 +1,56 @@
+<div class="row pt-4" [formGroup]="filters">
+  <div class="col-md-3">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Busqueda</mat-label>
+      <input formControlName="search" type="text" matInput />
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-3">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Precio mínimmo</mat-label>
+      <input formControlName="minPrice" type="number" matInput />
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-3">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Precio máximo</mat-label>
+      <input formControlName="maxPrice" type="number" matInput />
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-3">
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categoryList" [value]="category">{{ category }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-3">
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Ordenar por</mat-label>
+      <mat-select formControlName="field">
+        <mat-option *ngFor="let field of fieldList" [value]="field">{{ field }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="col-md-3">
+    <mat-button-toggle-group formControlName="sortType" class="mt-2" name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="DESC">Descendente</mat-button-toggle>
+      <mat-button-toggle value="ASC">Ascendente</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="col-md-3">
+    <button mat-raised-button color="accent" class="mt-2 mx-1" (click)="filter()" cdkFocusInitial>
+      <mat-icon>search</mat-icon> Filtrar
+    </button>
+    <button mat-raised-button color="primary" class="mt-2 mx-1" (click)="clearFilter()" cdkFocusInitial>
+      <mat-icon>cleaning_services</mat-icon> Limpiar filtros
+    </button>
+  </div>
+</div>

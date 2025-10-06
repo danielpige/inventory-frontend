@@ -1,0 +1,63 @@
+<div class="container-xxl">
+  <div class="row mx-auto">
+    <div class="col-md-12">
+      <app-header-page
+        [hasButtonTwo]="false"
+        [hasButtonOne]="false"
+        [icon]="'supervised_user_circle'"
+        [title]="currentUser?.name"
+        [subtitle]="currentUser?.username"
+      ></app-header-page>
+    </div>
+
+    <div class="col-md-7 mx-auto form mt-5">
+      <div class="row px-4 mb-3">
+        <div class="col-md-12">
+          <h3>Información personal</h3>
+        </div>
+      </div>
+      <div class="row px-4">
+        <div class="col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Email</mat-label>
+            <input matInput readonly placeholder="Email" [value]="currentUser?.email" />
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Usuario</mat-label>
+            <input matInput readonly placeholder="Usuario" [value]="currentUser?.username" />
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Nombre completo</mat-label>
+            <input matInput readonly placeholder="Nombre completo" [value]="currentUser?.name" />
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-3 pt-3">
+          <mat-slide-toggle [disabled]="true" [checked]="currentUser?.enable">Habilitado</mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mx-auto form mt-5">
+      <div class="row px-4 mb-3">
+        <div class="col-md-12">
+          <h3>Actividad</h3>
+        </div>
+      </div>
+      <div class="row px-4">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Fecha de creacion</mat-label>
+            <input matInput readonly placeholder="Fecha" [value]="currentUser?.createdAt | date" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

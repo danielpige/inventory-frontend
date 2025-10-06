@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Formulario de productos</h2>
+<mat-dialog-content class="p-2">
+  <div class="container-fluid">
+    <div class="row" [formGroup]="productForm" *ngIf="!loading">
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input formControlName="name" matInput />
+          <mat-error>El nombre es requerido.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let category of categoryList" [value]="category">{{ category }}</mat-option>
+          </mat-select>
+          <mat-error>La categoria es requerida.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Precio</mat-label>
+          <input formControlName="price" type="number" matInput />
+          <mat-error>El precio es requerido.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Stock</mat-label>
+          <input formControlName="stock" matInput />
+          <mat-error>El stock es requerido.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <app-loader *ngIf="loading"></app-loader>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+  <button mat-raised-button [disabled]="loading" (click)="submitForm()" cdkFocusInitial>Guardar cambios</button>
+  <button mat-raised-button [disabled]="loading" *ngIf="!dialogData" (click)="fileInput.click()" cdkFocusInitial>Importar CSV</button>
+  <input
+    #fileInput
+    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    (change)="changeFile($event)"
+    type="file"
+    hidden
+  />
+</mat-dialog-actions>

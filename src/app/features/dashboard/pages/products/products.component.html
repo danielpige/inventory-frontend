@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <app-header-page
+      [titleButtonTwo]="'Nuevo registro'"
+      [iconButtonTwo]="'add'"
+      [hasButtonTwo]="true"
+      [titleButtonOne]="'Exportar'"
+      [iconButtonOne]="'system_update_alt'"
+      [hasButtonOne]="true"
+      [icon]="'token'"
+      [title]="'Gestión de productos'"
+      [subtitle]="'Administra tu inventario y catalogo'"
+      (actionButton)="getActionButtons($event)"
+    ></app-header-page>
+  </div>
+
+  <div class="col-md-12 p-3">
+    <app-filters (sendFilter)="getFilter($event)"></app-filters>
+  </div>
+
+  <div class="col-md-12 px-4">
+    <app-table
+      (changePagination)="changePagination($event)"
+      [hasPagination]="true"
+      [hasActions]="true"
+      [dataSource]="products"
+      [displayedColumns]="displayedColumns"
+      [pageSize]="limit?.value || 0"
+      [length]="length"
+      (actionSelected)="selectedAction($event)"
+      [actionList]="actionList"
+      [loading]="loading"
+    ></app-table>
+  </div>
+</div>

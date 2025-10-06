@@ -1,0 +1,61 @@
+.header-container {
+  width: 100%;
+  border: 1px solid #d8e3ea;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.header-color {
+  width: 100%;
+  height: 80px;
+  background: #2a7b9b;
+  background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+  border-radius: 15px 15px 0px 0px;
+}
+
+.titles-container {
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
+.icon-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container {
+  background-color: white;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 3px 4px 22px -6px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 3px 4px 22px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 4px 22px -6px rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container mat-icon {
+  height: 50px;
+  width: 50px;
+  font-size: 50px;
+  color: #2a7b9b;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.subtitle {
+  color: gray;
+  font-size: 18px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}

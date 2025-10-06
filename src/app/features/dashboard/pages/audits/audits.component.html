@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-12">
+    <app-header-page
+      [hasButtonTwo]="false"
+      [hasButtonOne]="false"
+      [icon]="'history'"
+      [title]="'Gestión de auditoria'"
+      [subtitle]="'Listado de acciones realizadas por usuario'"
+    ></app-header-page>
+  </div>
+
+  <div class="col-md-12 px-4">
+    <app-table
+      [hasPagination]="false"
+      [hasActions]="false"
+      [dataSource]="audits"
+      [displayedColumns]="displayedColumns"
+      [loading]="loading"
+    ></app-table>
+  </div>
+</div>
