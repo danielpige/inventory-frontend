@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../service/products.service';
 import { Product, ProductData, ProductForm } from '../../../../../core/models/product.model';
@@ -14,6 +14,9 @@ export class ProductFormComponent implements OnInit {
   productForm!: FormGroup<ProductForm>;
   categoryList = ['muebles', 'papeleria', 'electronica', 'componentes'];
   loading = false;
+  errors: any[] = [];
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  selectedFile?: File;
   readonly dialogRef = inject(MatDialogRef<ProductFormComponent>);
   readonly dialogData = inject<ProductData>(MAT_DIALOG_DATA);
 
@@ -69,15 +72,31 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
-  changeFile(event: any): void {
+  changeFile(event: Event): void {
     this.loading = true;
-    const file = event.target.files[0] as File;
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('file', this.selectedFile as File);
+
+    this.errors = [];
 
     this.productSvc.importProducts(formData).subscribe({
       next: (res) => {
+        if (res?.data?.errors?.length !== 0) {
+          this.errors = [...res.data.errors];
+          this.snackBar.success(
+            `Ha ocurrido un error, se importaron con éxito ${res.data.imported} registros, ocurrió error en ${
+              (res.data.errors as any[]).length
+            } registros.`
+          );
+          this.loading = false;
+          this.clearFile();
+          return;
+        }
         this.snackBar.success('Datos importados con éxito.');
         this.loading = false;
         this.dialogRef.close(true);
@@ -87,6 +106,11 @@ export class ProductFormComponent implements OnInit {
         this.snackBar.error('Ocurrió un error al importar datos.');
       },
     });
+  }
+
+  clearFile() {
+    this.selectedFile = undefined;
+    this.fileInput.nativeElement.value = '';
   }
 
   get name() {

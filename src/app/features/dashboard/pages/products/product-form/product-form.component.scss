@@ -1,0 +1,19 @@
+.import-result {
+  border: 1px solid #d8e3ea;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.import-result h3 {
+  font-size: 20px;
+}
+
+.import-result .errors {
+  border: 1px solid #d8e3ea;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.import-result .errors span.title {
+  font-weight: bold;
+}
